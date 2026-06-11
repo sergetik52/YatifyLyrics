@@ -97,6 +97,7 @@ TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL") or CONFIG.get("telegram_channel
 TELEGRAM_PERSONAL_CHANNEL = bool(CONFIG.get("telegram_personal_channel", True))
 TELEGRAM_PROXY = os.getenv("TELEGRAM_PROXY") or CONFIG.get("telegram_proxy", "") or DEFAULT_PROXY
 LYRICS_USE_PROXY = bool(CONFIG.get("lyrics_use_proxy", True))
+TELEGRAM_PLAYER_ENABLED = bool(CONFIG.get("telegram_player_enabled", True))
 TELEGRAM_PLAYER_UPDATE_INTERVAL = float(CONFIG.get("telegram_player_update_interval", TELEGRAM_PLAYER_DEFAULT_UPDATE_INTERVAL))
 TELEGRAM_PLAYER_BAR_WIDTH = int(CONFIG.get("telegram_player_bar_width", TELEGRAM_PLAYER_DEFAULT_BAR_WIDTH))
 CACHE_MISS_TTL = float(CONFIG.get("cache_miss_ttl", CACHE_MISS_DEFAULT_TTL))
@@ -1052,7 +1053,7 @@ class TelegramChannelClient:
         self._put_latest(command)
 
     def enqueue_player(self, artist: str, title: str, position: float, duration: float):
-        if not self.enabled or duration <= 0:
+        if not TELEGRAM_PLAYER_ENABLED or not self.enabled or duration <= 0:
             return
         track_key = f"{artist}|{title}"
         text = format_player_text(position, duration)
@@ -1440,7 +1441,7 @@ class TelegramUserChannelClient:
             log.info(f"Telegram user queued update size={self.queue.qsize()}")
 
     def enqueue_player(self, artist: str, title: str, position: float, duration: float):
-        if not self.enabled or duration <= 0 or self._flood_active():
+        if not TELEGRAM_PLAYER_ENABLED or not self.enabled or duration <= 0 or self._flood_active():
             return
         track_key = f"{artist}|{title}"
         text = format_player_text(position, duration)

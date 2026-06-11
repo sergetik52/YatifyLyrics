@@ -122,6 +122,7 @@ def configure_telegram(config: dict):
             bool(config.get("telegram_personal_channel", True)),
         )
 
+    config["telegram_player_enabled"] = ask_yes("РџРѕРєР°Р·С‹РІР°С‚СЊ Рё Р·Р°РєСЂРµРїР»СЏС‚СЊ РїР»РµРµСЂ РІ Telegram?", bool(config.get("telegram_player_enabled", True)))
     config["telegram_player_update_interval"] = float(
         ask("Как часто обновлять плеер в Telegram, секунд", str(config.get("telegram_player_update_interval") or "15.0"))
     )
