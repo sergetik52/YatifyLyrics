@@ -1,0 +1,16 @@
+{
+  "discord_enabled": true,
+  "telegram_mode": "off",
+  "telegram_api_id": "",
+  "telegram_api_hash": "",
+  "telegram_phone": "+79990000000",
+  "telegram_channel": "@your_channel_username",
+  "telegram_personal_channel": true,
+  "telegram_proxy": "",
+  "lyrics_use_proxy": true,
+  "telegram_player_update_interval": 15.0,
+  "telegram_player_bar_width": 10,
+  "cache_miss_ttl": 86400.0,
+  "telegram_bot_token": "123456:ABC...",
+  "telegram_chat_id": "@your_channel_username"
+}

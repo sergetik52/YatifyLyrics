@@ -1,0 +1,31 @@
+# Local secrets
+config.json
+*.session
+*.session-journal
+
+# Runtime data
+logs/
+dist/logs/
+dist/config.json
+dist/*.session
+dist/*.session-journal
+
+# Build artifacts
+build/
+dist/
+*.spec
+.venv/
+.buildvenv/
+__pycache__/
+*.pyc
+
+# Release archives
+*.zip
+*.7z
+*.rar
+
+# Local editor/system files
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
